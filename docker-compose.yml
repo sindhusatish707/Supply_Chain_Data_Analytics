@@ -1,0 +1,18 @@
+# download latest PostgreSQL image, setup username/password and create a volume
+# creating volume ensures data is not deleted if container stops
+version: '3.8'
+services:
+  db:
+    image: postgres:17
+    container_name: scm_postgres
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password123
+      POSTGRES_DB: supply_chain_db
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql 
+
+volumes:
+  postgres_data:
